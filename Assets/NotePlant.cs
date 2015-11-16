@@ -8,6 +8,8 @@ public class NotePlant : MonoBehaviour {
 	public AudioClip myClip;
 	public int loopLength = 3;
 	private float repeatRate;
+	public bool inRange = false;
+
 
 	void OnEnable ()
 	{
@@ -18,18 +20,15 @@ public class NotePlant : MonoBehaviour {
 		InvokeRepeating ("Chime", 0, repeatRate);
 	}
 
-	// Use this for initialization
-	void Start () 
-	{
-
-	}
-
 	void Chime()
 	{
-		source.clip = myClip;
-//		Debug.Log ("myclip " + myClip);
-		source.Play ();
-	}
+		if (inRange) {
+			source.clip = myClip;
+			//		Debug.Log ("myclip " + myClip);
+			source.Play ();
+
+		}
+		}
 
 
 }

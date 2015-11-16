@@ -14,9 +14,9 @@ public class MeshCombiner : MonoBehaviour {
 	
 	public void Combine()
 	{
-		Debug.Log ("combining");
+//		Debug.Log ("combining");
 		MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-		Debug.Log ("Meshfilters: " + meshFilters.Length);
+//		Debug.Log ("Meshfilters: " + meshFilters.Length);
 		CombineInstance[] combine = new CombineInstance[meshFilters.Length];
 		int i = 0;
 		while (i < meshFilters.Length) {

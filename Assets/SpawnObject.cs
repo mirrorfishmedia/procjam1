@@ -5,6 +5,8 @@ public class SpawnObject : MonoBehaviour {
 
 	public GameObject obj;
 	public float radius = 50;
+	public bool spawnBoxed = false;
+	public Vector2 randBoxPos;
 	public int numObjects = 10;
 	public float verticalRadius = 0;
 	public Vector2 scaleRange = new Vector2 (1,1);
@@ -12,6 +14,7 @@ public class SpawnObject : MonoBehaviour {
 	public bool randomizeRotation;
 	public bool spawnOnStart = true;
 	public bool parentToSpawner = false;
+	public bool unparentOnSpawn = false;
 
 
 	// Use this for initialization
@@ -32,7 +35,15 @@ public class SpawnObject : MonoBehaviour {
 	
 	void Spawn()
 	{
-		GameObject clone = Instantiate (obj, GetRandomPoint () + transform.position, transform.rotation) as GameObject;
+		GameObject clone;
+		if (spawnBoxed) 
+		{
+			clone = Instantiate (obj, GetPointInBox(), Quaternion.identity) as GameObject;
+		} else 
+		{
+			clone = Instantiate (obj, GetRandomPoint () + transform.position, transform.rotation) as GameObject;
+		}
+
 
 		if (randomizeRotation) {
 			clone.transform.rotation = Random.rotation;
@@ -49,6 +60,15 @@ public class SpawnObject : MonoBehaviour {
 			clone.transform.SetParent(this.transform);
 		}
 
+		if (unparentOnSpawn)
+			clone.transform.SetParent (null);
+
+	}
+
+	Vector3 GetPointInBox()
+	{
+		Vector3 pos = new Vector3 (Random.Range (-randBoxPos.x, randBoxPos.x), Random.Range (-1, 1f) * verticalRadius, Random.Range (0, randBoxPos.y));
+		return pos;
 	}
 
 	Vector3 GetRandomPoint()

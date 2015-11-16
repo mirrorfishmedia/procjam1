@@ -31,7 +31,7 @@ public class RandomChord : MonoBehaviour {
 	void Start () 
 	{
 		source.clip = myPlant.chordSample;
-		InvokeRepeating("Jump", Random.Range (loopOffsetRange.x, loopOffsetRange.y), Random.Range (loopOffsetRange.x, loopOffsetRange.y));
+		InvokeRepeating("Jump", Random.Range (loopOffsetRange.x, loopOffsetRange.y), Random.Range (loopOffsetRange.x, loopOffsetRange.y) + loopTime );
 		for (int i = 0; i < numNotePlants; i++) 
 		{
 			Vector3 offsetPos = new Vector3 (Random.Range (0,15f), 0, Random.Range (0,15f));
@@ -49,6 +49,7 @@ public class RandomChord : MonoBehaviour {
 
 		//rb.AddForce (Vector3.up * jumpForce);
 		//if (flier)
+
 		source.Play ();
 
 

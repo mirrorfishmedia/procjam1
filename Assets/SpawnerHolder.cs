@@ -15,7 +15,7 @@ public class SpawnerHolder : MonoBehaviour {
 	// Use this for initialization
 	void SpawnAll () 
 	{
-		Debug.Log ("spawnAll " + meshCombiner);
+//		Debug.Log ("spawnAll " + meshCombiner);
 		foreach (SpawnObject spawner in spawners) 
 		{
 			spawner.Loop();

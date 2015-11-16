@@ -14,6 +14,8 @@ public class RandomSingle : MonoBehaviour {
 	
 	private AudioSource source;
 	private Rigidbody rb;
+	public bool inRange = false;
+	
 	
 	
 	void OnEnable()
@@ -43,8 +45,9 @@ public class RandomSingle : MonoBehaviour {
 	
 	void Jump()
 	{
-		
+		source.clip = clips [Random.Range (0, clips.Length)];	
 		rb.AddForce (Vector3.up * jumpForce);
+		if (inRange)
 		source.Play ();
 		
 		
